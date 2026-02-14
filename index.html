@@ -1,44 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Muntaha ❤️ Rayyan</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 
 body{
     font-family:'Playfair Display',serif;
-    background: radial-gradient(circle at top,#1a0d0d,#000);
+    background:black;
     color:#f5e6d3;
     overflow:hidden;
 }
 
-/* STAR BACKGROUND */
-.stars{
+/* Film Grain */
+body::after{
+    content:"";
     position:fixed;
     width:100%;
     height:100%;
-    background:transparent;
-    z-index:-1;
-}
-.star{
-    position:absolute;
-    width:2px;
-    height:2px;
-    background:white;
-    animation:twinkle 3s infinite alternate;
-}
-@keyframes twinkle{
-    from{opacity:0.2;}
-    to{opacity:1;}
+    background:url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+    opacity:0.15;
+    pointer-events:none;
 }
 
-/* INTRO */
+/* Intro */
 #intro{
+    position:fixed;
+    width:100%;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    background:black;
+    z-index:1000;
+    animation:zoomOut 5s forwards;
+}
+#intro h1{
+    font-family:'Dancing Script',cursive;
+    font-size:55px;
+    animation:glow 2s infinite alternate;
+}
+@keyframes zoomOut{
+    0%{transform:scale(1.5);}
+    100%{transform:scale(1);opacity:0;visibility:hidden;}
+}
+@keyframes glow{
+    from{text-shadow:0 0 10px #ff9966;}
+    to{text-shadow:0 0 40px #ffcc99;}
+}
+
+/* Password Lock */
+#lock{
     position:fixed;
     width:100%;
     height:100vh;
@@ -47,174 +65,177 @@ body{
     justify-content:center;
     align-items:center;
     flex-direction:column;
-    z-index:1000;
-    animation:fadeOut 3s ease forwards;
-    animation-delay:4s;
+    z-index:900;
 }
-#intro h1{
-    font-size:50px;
-    font-family:'Dancing Script',cursive;
-    animation:glow 2s infinite alternate;
-}
-@keyframes fadeOut{
-    to{opacity:0;visibility:hidden;}
-}
-@keyframes glow{
-    from{text-shadow:0 0 10px #ff9966;}
-    to{text-shadow:0 0 30px #ffcc99;}
-}
-
-/* GLOWING NAME */
-.glow-text{
+input{
+    padding:10px;
+    margin-top:15px;
+    background:#2b1a1a;
+    border:none;
+    color:white;
     text-align:center;
-    margin-top:60px;
-    font-size:48px;
-    font-family:'Dancing Script',cursive;
-    animation:glow 2s infinite alternate;
 }
-
-/* ENVELOPE */
-.envelope-wrapper{
-    display:flex;
-    justify-content:center;
-    margin-top:60px;
-}
-.envelope{
-    width:200px;
-    height:120px;
-    background:#5a2e1f;
-    position:relative;
+button{
+    margin-top:15px;
+    padding:8px 15px;
+    background:#7a3e2b;
+    border:none;
+    color:white;
     cursor:pointer;
 }
-.envelope:before{
-    content:"";
-    position:absolute;
-    top:0;
-    width:0;
-    height:0;
-    border-left:100px solid transparent;
-    border-right:100px solid transparent;
-    border-bottom:60px solid #7a3e2b;
-}
-.open .envelope:before{
-    transform:rotateX(180deg);
-    transform-origin:top;
-    transition:1s;
-}
 
-/* LETTER */
-.letter{
-    display:none;
-    margin:40px auto;
-    background:linear-gradient(145deg,#4b2e2e,#3a1f1f);
-    padding:50px;
-    border-radius:20px;
-    width:90%;
-    max-width:750px;
-    box-shadow:0 20px 60px rgba(0,0,0,0.7);
-    line-height:2;
-    font-size:20px;
-    border:2px solid rgba(255,255,255,0.1);
-    position:relative;
-}
-
-/* Coffee stain effect */
-.letter:before{
-    content:"";
-    position:absolute;
-    top:20px;
-    right:30px;
-    width:120px;
-    height:120px;
-    border-radius:50%;
-    background:rgba(255,255,255,0.05);
-}
-
-/* Candle */
-.candle{
+/* Stars */
+#stars{
     position:fixed;
-    bottom:20px;
-    right:30px;
-    width:20px;
-    height:60px;
-    background:#fff5e6;
+    width:100%;
+    height:100%;
+    z-index:-1;
 }
-.flame{
+.star{
     position:absolute;
-    top:-20px;
-    left:5px;
-    width:10px;
-    height:20px;
-    background:orange;
-    border-radius:50%;
-    animation:flicker 0.2s infinite alternate;
-}
-@keyframes flicker{
-    from{transform:scale(1);}
-    to{transform:scale(1.2);}
-}
-
-/* TYPEWRITER */
-.cursor{
-    display:inline-block;
     width:2px;
-    height:20px;
+    height:2px;
     background:white;
-    animation:blink 1s infinite;
 }
-@keyframes blink{50%{opacity:0;}}
 
-/* Floating hearts */
-.heart{
-    position:fixed;
-    color:#ff9966;
-    animation:float 6s linear infinite;
+/* Content */
+#content{
+    display:none;
+    text-align:center;
+    padding:50px 20px;
 }
-@keyframes float{
-    0%{transform:translateY(100vh);opacity:1;}
-    100%{transform:translateY(-10vh);opacity:0;}
+
+.chapter{
+    display:none;
+    max-width:700px;
+    margin:40px auto;
+    font-size:20px;
+    line-height:1.8;
+}
+.active{display:block;}
+
+#countdown{
+    margin-top:30px;
+    font-size:20px;
+}
+
+/* Sparkle */
+.sparkle{
+    position:fixed;
+    width:5px;
+    height:5px;
+    background:white;
+    border-radius:50%;
+    pointer-events:none;
+}
+
+/* Finale */
+#finale{
+    display:none;
+    font-family:'Dancing Script',cursive;
+    font-size:45px;
+    margin-top:60px;
+    animation:glow 2s infinite alternate;
 }
 </style>
 </head>
 
 <body>
 
-<div class="stars" id="stars"></div>
-
-<!-- Intro -->
 <div id="intro">
     <h1>Muntaha ❤️ Rayyan</h1>
-    <p style="margin-top:15px;">A Love Brewed Beyond Distance ☕</p>
+    <p>A Love Brewed Beyond Distance ☕</p>
 </div>
 
-<div class="glow-text">Muntaha ❤️ Rayyan</div>
-
-<div class="envelope-wrapper" onclick="openLetter()">
-    <div class="envelope"></div>
+<div id="lock">
+    <h2>Only one person can unlock this 💌</h2>
+    <p>Hint: The date that changed everything</p>
+    <input type="password" id="pass" placeholder="DD-MM-YYYY">
+    <button onclick="checkPass()">Unlock</button>
 </div>
 
-<div class="letter" id="letter">
-    <span id="text"></span><span class="cursor"></span>
+<div id="stars"></div>
+
+<div id="content">
+
+<div class="chapter active">
+<h2>Chapter 1 — The Beginning</h2>
+<p>The day we first spoke, I didn’t know my world was about to change. Your words felt warm, like coffee on a quiet evening...</p>
+<button onclick="nextChapter()">Next</button>
 </div>
 
-<!-- Candle -->
-<div class="candle">
-    <div class="flame"></div>
+<div class="chapter">
+<h2>Chapter 2 — Distance</h2>
+<p>Miles tried to test us. But love like ours isn’t measured in kilometers — it’s measured in heartbeats...</p>
+<button onclick="nextChapter()">Next</button>
 </div>
 
-<!-- Background Music -->
-<audio autoplay loop>
-<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_c8e5a7e9f6.mp3" type="audio/mpeg">
-</audio>
+<div class="chapter">
+<h2>Chapter 3 — The Future</h2>
+<p>One day I will stand beside you — not through screens, but in reality. And every second of waiting will feel worth it...</p>
+<button onclick="showFinale()">Finish</button>
+</div>
 
-<!-- Clock Tick -->
-<audio autoplay loop>
-<source src="https://cdn.pixabay.com/audio/2021/08/04/audio_d7c4c25b68.mp3" type="audio/mpeg">
+<div id="countdown"></div>
+
+<button onclick="playVoice()">Click if you miss me 🎧</button>
+
+<div id="finale">
+No matter the distance…  
+<br>Muntaha ❤️ Rayyan
+</div>
+
+</div>
+
+<!-- Voice -->
+<audio id="voice">
+<source src="YOUR_VOICE_NOTE_LINK.mp3" type="audio/mpeg">
 </audio>
 
 <script>
+
+/* Password Check */
+function checkPass(){
+    if(document.getElementById("pass").value === "24-02-2026"){
+        document.getElementById("lock").style.display="none";
+        document.getElementById("content").style.display="block";
+    }else{
+        alert("That’s not our anniversary 💔");
+    }
+}
+
+/* Chapters */
+let current=0;
+function nextChapter(){
+    const chapters=document.querySelectorAll(".chapter");
+    chapters[current].classList.remove("active");
+    current++;
+    chapters[current].classList.add("active");
+}
+
+/* Finale */
+function showFinale(){
+    document.getElementById("finale").style.display="block";
+}
+
+/* Countdown */
+const anniversary=new Date("February 24, 2026 00:00:00").getTime();
+setInterval(()=>{
+    const now=new Date().getTime();
+    const diff=anniversary-now;
+
+    const days=Math.floor(diff/(1000*60*60*24));
+    const hours=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+    const minutes=Math.floor((diff%(1000*60*60))/(1000*60));
+    const seconds=Math.floor((diff%(1000*60))/1000);
+
+    document.getElementById("countdown").innerHTML=
+    "⏳ Until Our 1st Anniversary ❤️<br>" +
+    days+"d "+hours+"h "+minutes+"m "+seconds+"s";
+},1000);
+
 /* Stars */
-for(let i=0;i<100;i++){
+for(let i=0;i<120;i++){
     let star=document.createElement("div");
     star.className="star";
     star.style.top=Math.random()*100+"%";
@@ -222,41 +243,22 @@ for(let i=0;i<100;i++){
     document.getElementById("stars").appendChild(star);
 }
 
-/* Letter Content */
-const message = `My Dearest Muntaha,
+/* Sparkles */
+document.addEventListener("mousemove",(e)=>{
+    let s=document.createElement("div");
+    s.className="sparkle";
+    s.style.left=e.pageX+"px";
+    s.style.top=e.pageY+"px";
+    document.body.appendChild(s);
+    setTimeout(()=>s.remove(),400);
+});
 
-If love had a scent, it would be warm coffee on a quiet evening — deep, comforting, unforgettable. That is what you are to me. Even across miles, I feel you in every heartbeat. I imagine us sitting together in silence, sharing warmth, laughing softly, holding hands without needing words. You are my calm, my warmth, my peace. Distance tests us, but it will never weaken what I feel. Every night I whisper your name into the dark, believing one day I will say it while standing beside you. And when that day comes, every second of waiting will feel worth it. Until then, carry my love like a warmth in your heart — just like coffee that never truly grows cold.
-
-Forever Yours,
-Rayyan ❤️`;
-
-let i=0;
-function typeWriter(){
-    if(i<message.length){
-        document.getElementById("text").innerHTML+=message.charAt(i);
-        i++;
-        setTimeout(typeWriter,35);
-    }
+/* Voice */
+function playVoice(){
+    document.getElementById("voice").play();
 }
-
-function openLetter(){
-    document.getElementById("letter").style.display="block";
-    typeWriter();
-}
-
-/* Floating Hearts */
-function createHeart(){
-    const heart=document.createElement("div");
-    heart.className="heart";
-    heart.innerHTML="❤️";
-    heart.style.left=Math.random()*100+"vw";
-    heart.style.fontSize=Math.random()*20+10+"px";
-    heart.style.animationDuration=Math.random()*3+3+"s";
-    document.body.appendChild(heart);
-    setTimeout(()=>{heart.remove();},6000);
-}
-setInterval(createHeart,600);
 </script>
 
 </body>
 </html>
+
