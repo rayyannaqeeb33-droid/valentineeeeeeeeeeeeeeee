@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Muntaha ❤️ Rayyan</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -14,18 +14,53 @@ body{
     font-family:'Playfair Display',serif;
     background:black;
     color:#f5e6d3;
-    overflow:hidden;
+    overflow-x:hidden;
 }
 
-/* Film Grain */
-body::after{
+/* Galaxy Background */
+body::before{
     content:"";
     position:fixed;
-    width:100%;
-    height:100%;
-    background:url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
-    opacity:0.15;
-    pointer-events:none;
+    width:200%;
+    height:200%;
+    background:radial-gradient(circle,#1a0d0d,#000);
+    animation:moveBg 60s linear infinite;
+    z-index:-2;
+}
+@keyframes moveBg{
+    from{transform:translate(0,0);}
+    to{transform:translate(-200px,-200px);}
+}
+
+/* Stars */
+.star{
+    position:fixed;
+    width:2px;
+    height:2px;
+    background:white;
+    animation:twinkle 2s infinite alternate;
+}
+@keyframes twinkle{
+    from{opacity:0.3;}
+    to{opacity:1;}
+}
+
+/* Sections */
+.section{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:40px;
+    opacity:0;
+    transform:translateY(50px);
+    transition:all 1.5s ease;
+}
+.section.show{
+    opacity:1;
+    transform:translateY(0);
 }
 
 /* Intro */
@@ -33,109 +68,101 @@ body::after{
     position:fixed;
     width:100%;
     height:100vh;
+    background:black;
     display:flex;
     justify-content:center;
     align-items:center;
     flex-direction:column;
-    background:black;
+    animation:fadeIntro 5s forwards;
     z-index:1000;
-    animation:zoomOut 5s forwards;
 }
 #intro h1{
     font-family:'Dancing Script',cursive;
-    font-size:55px;
+    font-size:65px;
     animation:glow 2s infinite alternate;
 }
-@keyframes zoomOut{
-    0%{transform:scale(1.5);}
-    100%{transform:scale(1);opacity:0;visibility:hidden;}
+@keyframes fadeIntro{
+    0%{opacity:1;}
+    100%{opacity:0;visibility:hidden;}
 }
 @keyframes glow{
     from{text-shadow:0 0 10px #ff9966;}
     to{text-shadow:0 0 40px #ffcc99;}
 }
 
-/* Password Lock */
-#lock{
-    position:fixed;
-    width:100%;
-    height:100vh;
-    background:black;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    z-index:900;
+/* Coffee Letter */
+.letter{
+    background:linear-gradient(145deg,#4b2e2e,#3a1f1f);
+    padding:60px;
+    border-radius:25px;
+    max-width:850px;
+    box-shadow:0 20px 60px rgba(0,0,0,0.7);
+    line-height:2;
+    font-size:22px;
+    position:relative;
 }
-input{
-    padding:10px;
-    margin-top:15px;
-    background:#2b1a1a;
-    border:none;
-    color:white;
-    text-align:center;
+.letter:before{
+    content:"";
+    position:absolute;
+    top:30px;
+    right:50px;
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.05);
 }
+
+/* Slideshow */
+.slideshow img{
+    max-width:300px;
+    border-radius:20px;
+    box-shadow:0 10px 40px rgba(0,0,0,0.7);
+    opacity:0;
+    position:absolute;
+    transition:opacity 2s ease;
+}
+.slideshow img.active{
+    opacity:1;
+}
+
+/* Flowers */
+.flower{
+    font-size:55px;
+    margin:20px;
+    transition:transform 0.4s;
+}
+.flower:hover{transform:scale(1.4) rotate(10deg);}
+
+/* Gift */
+.gift{font-size:80px;cursor:pointer;}
+#giftMessage{display:none;margin-top:20px;font-family:'Dancing Script',cursive;font-size:28px;}
+
+/* Buttons */
 button{
-    margin-top:15px;
-    padding:8px 15px;
+    margin-top:30px;
+    padding:12px 25px;
     background:#7a3e2b;
     border:none;
     color:white;
     cursor:pointer;
 }
 
-/* Stars */
-#stars{
-    position:fixed;
-    width:100%;
-    height:100%;
-    z-index:-1;
-}
-.star{
-    position:absolute;
-    width:2px;
-    height:2px;
-    background:white;
-}
-
-/* Content */
-#content{
-    display:none;
-    text-align:center;
-    padding:50px 20px;
-}
-
-.chapter{
-    display:none;
-    max-width:700px;
-    margin:40px auto;
-    font-size:20px;
-    line-height:1.8;
-}
-.active{display:block;}
-
-#countdown{
-    margin-top:30px;
-    font-size:20px;
-}
-
-/* Sparkle */
-.sparkle{
-    position:fixed;
-    width:5px;
-    height:5px;
-    background:white;
-    border-radius:50%;
-    pointer-events:none;
-}
-
 /* Finale */
 #finale{
-    display:none;
     font-family:'Dancing Script',cursive;
-    font-size:45px;
-    margin-top:60px;
+    font-size:60px;
     animation:glow 2s infinite alternate;
+}
+
+/* Hearts */
+.heart{
+    position:fixed;
+    color:#ff9966;
+    animation:float 6s linear infinite;
+}
+@keyframes float{
+    0%{transform:translateY(100vh);opacity:1;}
+    100%{transform:translateY(-10vh);opacity:0;}
 }
 </style>
 </head>
@@ -144,122 +171,138 @@ button{
 
 <div id="intro">
     <h1>Muntaha ❤️ Rayyan</h1>
-    <p>A Love Brewed Beyond Distance ☕</p>
+    <p>A Cinematic Love Story ☕</p>
 </div>
 
-<div id="lock">
-    <h2>Only one person can unlock this 💌</h2>
-    <p>Hint: The date that changed everything</p>
-    <input type="password" id="pass" placeholder="DD-MM-YYYY">
-    <button onclick="checkPass()">Unlock</button>
+<!-- LOVE LETTER -->
+<div class="section">
+<div class="letter" id="typewriter"></div>
 </div>
 
-<div id="stars"></div>
-
-<div id="content">
-
-<div class="chapter active">
-<h2>Chapter 1 — The Beginning</h2>
-<p>The day we first spoke, I didn’t know my world was about to change. Your words felt warm, like coffee on a quiet evening...</p>
-<button onclick="nextChapter()">Next</button>
+<!-- SLIDESHOW -->
+<div class="section">
+<h2>Our Memories 📸</h2>
+<div class="slideshow">
+<img src="photo1.jpg" class="active">
+<img src="photo2.jpg">
+<img src="photo3.jpg">
+</div>
 </div>
 
-<div class="chapter">
-<h2>Chapter 2 — Distance</h2>
-<p>Miles tried to test us. But love like ours isn’t measured in kilometers — it’s measured in heartbeats...</p>
-<button onclick="nextChapter()">Next</button>
+<!-- FLOWERS -->
+<div class="section">
+<h2>Virtual Flowers For You 🌹</h2>
+<div>
+<span class="flower">🌹</span>
+<span class="flower">🌸</span>
+<span class="flower">💐</span>
+<span class="flower">🌷</span>
+</div>
 </div>
 
-<div class="chapter">
-<h2>Chapter 3 — The Future</h2>
-<p>One day I will stand beside you — not through screens, but in reality. And every second of waiting will feel worth it...</p>
-<button onclick="showFinale()">Finish</button>
+<!-- GIFT -->
+<div class="section">
+<h2>A Gift From My Heart 🎁</h2>
+<div class="gift" onclick="openGift()">🎁</div>
+<div id="giftMessage">
+You are my forever Valentine 💖
+</div>
 </div>
 
-<div id="countdown"></div>
+<!-- VOICE -->
+<div class="section">
+<h2>Close Your Eyes & Listen 🎧</h2>
+<button onclick="playVoice()">Play My Voice</button>
+</div>
 
-<button onclick="playVoice()">Click if you miss me 🎧</button>
-
+<!-- FINALE -->
+<div class="section">
 <div id="finale">
-No matter the distance…  
-<br>Muntaha ❤️ Rayyan
+No matter the distance…<br>
+Muntaha ❤️ Rayyan
+</div>
 </div>
 
-</div>
-
-<!-- Voice -->
-<audio id="voice">
+<audio id="voice" preload="auto" playsinline>
 <source src="voice.mp3" type="audio/mpeg">
 </audio>
 
-
 <script>
 
-/* Password Check */
-function checkPass(){
-    if(document.getElementById("pass").value === "24-02-2026"){
-        document.getElementById("lock").style.display="none";
-        document.getElementById("content").style.display="block";
-    }else{
-        alert("That’s not our anniversary 💔");
-    }
-}
+/* Typewriter Letter */
+const message=`My Dearest Muntaha,
 
-/* Chapters */
-let current=0;
-function nextChapter(){
-    const chapters=document.querySelectorAll(".chapter");
-    chapters[current].classList.remove("active");
-    current++;
-    chapters[current].classList.add("active");
-}
+If love had a scent, it would be coffee on a quiet evening — warm, deep, unforgettable.
+You are my calm, my warmth, my forever.
+Distance only makes my heart grow stronger for you.
+One day I will stand beside you, not through screens,
+but in reality —
+and every second of waiting will be worth it.
 
-/* Finale */
-function showFinale(){
-    document.getElementById("finale").style.display="block";
-}
+Forever Yours,
+Rayyan ❤️`;
 
-/* Countdown */
-const anniversary=new Date("February 24, 2026 00:00:00").getTime();
+let i=0;
+function type(){
+if(i<message.length){
+document.getElementById("typewriter").innerHTML+=message.charAt(i);
+i++;
+setTimeout(type,35);
+}}
+setTimeout(type,2000);
+
+/* Scroll reveal */
+const sections=document.querySelectorAll(".section");
+window.addEventListener("scroll",()=>{
+sections.forEach(sec=>{
+if(sec.getBoundingClientRect().top<window.innerHeight-100){
+sec.classList.add("show");
+}});
+});
+
+/* Slideshow */
+let slideIndex=0;
 setInterval(()=>{
-    const now=new Date().getTime();
-    const diff=anniversary-now;
-
-    const days=Math.floor(diff/(1000*60*60*24));
-    const hours=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
-    const minutes=Math.floor((diff%(1000*60*60))/(1000*60));
-    const seconds=Math.floor((diff%(1000*60))/1000);
-
-    document.getElementById("countdown").innerHTML=
-    "⏳ Until Our 1st Anniversary ❤️<br>" +
-    days+"d "+hours+"h "+minutes+"m "+seconds+"s";
-},1000);
+let slides=document.querySelectorAll(".slideshow img");
+slides.forEach(img=>img.classList.remove("active"));
+slideIndex=(slideIndex+1)%slides.length;
+slides[slideIndex].classList.add("active");
+},4000);
 
 /* Stars */
-for(let i=0;i<120;i++){
-    let star=document.createElement("div");
-    star.className="star";
-    star.style.top=Math.random()*100+"%";
-    star.style.left=Math.random()*100+"%";
-    document.getElementById("stars").appendChild(star);
+for(let i=0;i<150;i++){
+let star=document.createElement("div");
+star.className="star";
+star.style.top=Math.random()*100+"%";
+star.style.left=Math.random()*100+"%";
+document.body.appendChild(star);
 }
 
-/* Sparkles */
-document.addEventListener("mousemove",(e)=>{
-    let s=document.createElement("div");
-    s.className="sparkle";
-    s.style.left=e.pageX+"px";
-    s.style.top=e.pageY+"px";
-    document.body.appendChild(s);
-    setTimeout(()=>s.remove(),400);
-});
+/* Hearts */
+setInterval(()=>{
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),6000);
+},800);
+
+/* Gift */
+function openGift(){
+document.getElementById("giftMessage").style.display="block";
+}
 
 /* Voice */
 function playVoice(){
-    document.getElementById("voice").play();
+let audio=document.getElementById("voice");
+audio.pause();
+audio.currentTime=0;
+audio.play();
 }
 </script>
 
 </body>
 </html>
+
 
